@@ -1,0 +1,41 @@
+.gradient-custom-2 {
+  background: linear-gradient(to right, #0F2027, #0F2027,#2C5364);
+  color: honeydew;
+}
+
+@media (min-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+}
+.gradient-custom-1 {
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #16A085, #77A1D3, #79CBCA, #F4D03F);
+}
+.gradient-custom-0 {
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #fc00ff, #00dbde);
+}
+
+
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+  }
+}
+.center-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.full-screen-container {
+  height: 100vh; /* Set the container height to 100% of the viewport height */
+  display: flex; /* Use flexbox for vertical centering */
+  justify-content: center; /* Center horizontally */
+  align-items: start; /* Center vertically */
+}
+
