@@ -72,6 +72,8 @@ export class MainPageComponent implements OnInit{
       product_mrp: 0,
       product_price: 0,
     }];
+    this.total_price=0;
+    this.total_mrp = 0;
   }
 
 
