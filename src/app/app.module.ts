@@ -10,12 +10,15 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
+import { QrCodeScanComponent } from './qr-code-scan/qr-code-scan.component';
+import {NgxScannerQrcodeModule} from "ngx-scanner-qrcode";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainPageComponent
+    MainPageComponent,
+    QrCodeScanComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import {MatButtonModule} from "@angular/material/button";
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    NgxScannerQrcodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

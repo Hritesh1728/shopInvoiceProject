@@ -9,13 +9,21 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit{
+export class MainPageComponent implements OnInit {
   invoice_data: any[] = [];
   // total_form_fields = this.invoice_data.length;
   currentDate = new Date();
+
+  less_factor=20;
+  less_initiated =false ;
+  del_index: number | null = null;
+  del_item_initiated = false;
+
   total_price = 0;
-  total_mrp = 0;
+  total_save_price = 0;
   open_invoice = false;
+  random4DigitNumber = 0;
+
 
 
   constructor(
@@ -26,58 +34,86 @@ export class MainPageComponent implements OnInit{
 
   ngOnInit() {
     // Initialization logic goes here
+    console.log(this.invoice_data.length)
   }
 
   openDialog(addManually: TemplateRef<any>) {
-    this.invoice_data.push({
-      product_name: '',
-      product_mrp: 0,
-      product_price: 0,
-    });
+    let last = this.invoice_data.length - 1;
+    if (last == -1) {
+      this.invoice_data.push({
+        product_name: '',
+        product_mrp: null,
+        product_price: null,
+      });
+    }
     this.open_invoice = false;
     this.modalService.open(addManually, {centered: true, backdrop: 'static', animation: true});
   }
 
   increment_table() {
     let last = this.invoice_data.length - 1;
-    this.total_price+=this.invoice_data[last].product_price;
-    this.total_mrp+=this.invoice_data[last].product_mrp;
-    this.invoice_data.push({
-      product_name: '',
-      product_mrp: 0,
-      product_price: 0,
-    });
+    if (last == -1) {
+      this.invoice_data.push({
+        product_name: '',
+        product_mrp: null,
+        product_price: null,
+      });
+    } else if (this.invoice_data[last].product_price != null) {
+      this.invoice_data.push({
+        product_name: '',
+        product_mrp: null,
+        product_price: null,
+      });
+    }
   }
 
   manual_data_submit() {
-    let last = this.invoice_data.length - 1;
-    this.total_price+=this.invoice_data[last].product_price;
-    this.total_mrp+=this.invoice_data[last].product_mrp;
     this.modalService.dismissAll();
-  }
-
-  less_mrp() {
-    let last = this.invoice_data.length - 1;
-    this.invoice_data[last].product_price = this.invoice_data[last].product_mrp * 0.8;
   }
 
   fix_mrp() {
     let last = this.invoice_data.length - 1;
-    this.invoice_data[last].product_price = this.invoice_data[last].product_mrp;
+    this.invoice_data[last].product_price = +(this.invoice_data[last].product_mrp).toFixed(2);
+    this.total_price += this.invoice_data[last].product_price;
+    this.total_save_price += (this.invoice_data[last].product_mrp - this.invoice_data[last].product_price);
+  }
+
+  less_mrp() {
+    let last = this.invoice_data.length - 1;
+    this.less_initiated = false;
+    if (this.less_factor != null && this.less_factor > 0) {
+      this.less_factor = 1-(+(this.less_factor/100).toFixed(2));
+      this.invoice_data[last].product_price = +(this.invoice_data[last].product_mrp * this.less_factor).toFixed(2);
+      this.total_price += this.invoice_data[last].product_price;
+      this.total_save_price += (this.invoice_data[last].product_mrp - this.invoice_data[last].product_price);
+    }
+    this.less_factor =20;
   }
 
   manual_data_reset() {
-    this.invoice_data = [{
-      product_name: '',
-      product_mrp: 0,
-      product_price: 0,
-    }];
-    this.total_price=0;
-    this.total_mrp = 0;
+    this.invoice_data = [];
+    this.total_price = 0;
+    this.total_save_price = 0;
   }
 
 
   openInvoice() {
+    this.total_save_price = +this.total_save_price.toFixed(2);
+    this.random4DigitNumber = Math.floor(1000 + Math.random() * 9000);
     this.open_invoice = true;
+  }
+
+  remove_item() {
+    this.del_item_initiated = false;
+    if (this.del_index != null && this.del_index > 0) {
+      this.total_price -= this.invoice_data[this.del_index - 1].product_price;
+      this.total_save_price -= (this.invoice_data[this.del_index - 1].product_mrp - this.invoice_data[this.del_index - 1].product_price);
+      this.invoice_data.splice(this.del_index - 1, 1);
+    }
+    this.del_index = null;
+  }
+
+  openQrScan() {
+    this.router.navigateByUrl(`qr_scanner`);
   }
 }

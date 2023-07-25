@@ -16,7 +16,7 @@ export class LoginComponent {
 
 
   submit() {
-    if(this.username==='9413991728' && this.password==='Papa@Shop'){
+    if(this.username==='9413991728' && this.password==='Shop@GG'){
       this.router.navigateByUrl(`main_page`);
     }else{
 
