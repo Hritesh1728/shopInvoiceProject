@@ -1,41 +1,36 @@
-<div class="container-fluid full-screen-container" >
+<div class="container-fluid full-screen-container">
   <div class="child center-input">
-      <div class="row">
-        <div class="col-md-12 gradient-custom-2" style="padding: 30px; border-radius: 10px">
-          <div class="text-center">
-            <img src="assets/logo-removebg-preview.png" alt="Gopal_garments_logo.png" class="img-fluid">
-            <div class="form">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="whole_amount" class="form-label" style="color:deeppink">Enter Mobile_No</label>
-                    <input type="text" class="form-control" id="whole_amount"
-                           placeholder="Enter Mobile No" required [(ngModel)]="username">
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-group">
-                    <label for="password" class="form-label" style="color: deeppink">Enter Password</label>
-                    <input type="password" class="form-control" id="password"
-                           placeholder="Enter Password" required [(ngModel)]="password">
-                  </div>
-                </div>
-                <div class="col-12 mt-3">
-                  <button type="button" class="btn btn-primary me-3" (click)="submit()">Log In</button>
+    <div class="row">
+      <div class="col-md-12 gradient-custom-2" style="padding: 30px; border-radius: 10px">
+        <div class="text-center">
+          <img src="assets/logo-removebg-preview.png" alt="Gopal_garments_logo.png" class="img-fluid">
+          <div class="form">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="whole_amount" class="form-label" style="color:deeppink">Enter Mobile_No</label>
+                  <input type="text" class="form-control" id="whole_amount"
+                         placeholder="Enter Mobile No" required [(ngModel)]="username">
                 </div>
               </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="password" class="form-label" style="color: deeppink">Enter Password</label>
+                  <input type="password" class="form-control" id="password"
+                         placeholder="Enter Password" required [(ngModel)]="password">
+                </div>
+              </div>
+              <div class="col-12 mt-3">
+                <button type="button" class="btn btn-light me-3 gradient-custom-0" (click)="submit()">Log In</button>
+              </div>
             </div>
+          </div>
 
-          </div>
-          <div>
-          </div>
+        </div>
+        <div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
-<footer id="sticky-footer" class="flex-shrink-0 ">
-  <div class="container text-center">
-    <small>&copy; Gopal Garments</small>
-  </div>
-</footer>

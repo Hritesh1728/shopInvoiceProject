@@ -5,6 +5,7 @@ p {
   word-break: break-all;
   font-family: 'Courier New', Courier, monospace;
 }
+
 div {
   text-align: center;
   background: #fdfdfd;
@@ -14,6 +15,7 @@ div {
     height: 60px;
     width: 60px;
     margin: 4px;
+
     &disabled {
       cursor: no-drop;
     }
@@ -27,8 +29,23 @@ div {
 
 .origin-overlay {
   .qrcode-tooltip {
-    .qrcode-tooltip-temp{
+    .qrcode-tooltip-temp {
       padding: min(5px) !important;
     }
   }
 }
+
+.gradient-custom-1 {
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #16A085, #77A1D3, #79CBCA, #F4D03F);
+}
+
+.gradient-text {
+  background-color: #f3ec78;
+  background-image: linear-gradient(45deg, #fc00ff, #00dbde);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
