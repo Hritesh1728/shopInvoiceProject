@@ -141,7 +141,7 @@
             <hr>
             <p> Amount paid by customer: <span style="color: #84B0CA ">{{+paid_amount}}/-</span></p>
             <p *ngIf="(paid_amount - total_price) >= 0"> Amount to be <span class="text-danger">return</span> to the
-              customer: <span style="color: #84B0CA ">{{paid_amount - total_price}}/-</span></p>
+              customer: <span style="color: #84B0CA ">{{+(paid_amount - total_price).toFixed(2)}}/-</span></p>
             <p>Share the Invoice on whatsapp: - <a (click)="share_invoice(whatsapp)"
                                                    style="color: dodgerblue; cursor: pointer">Click Here!</a></p>
           </div>

@@ -129,6 +129,10 @@ export class MainPageComponent implements OnInit {
   openInvoice() {
     this.total_save_price = +this.total_save_price.toFixed(2);
     this.random3DigitNumber = Math.floor(100 + Math.random() * 900);
+    let last = this.invoice_data.length - 1;
+    if(last != -1){
+      if(this.invoice_data[last].product_price==null) this.invoice_data.pop();
+    }
     this.open_invoice = true;
   }
 
@@ -156,24 +160,24 @@ export class MainPageComponent implements OnInit {
       month: '2-digit', // 'MM' for two-digit month
       year: 'numeric' // 'yyyy' for full year
     };
-    let return_price = (this.paid_amount - this.total_price) >= 0 ? (this.paid_amount - this.total_price) : 0;
+    let return_price = +((this.paid_amount - this.total_price) >= 0 ? (this.paid_amount - this.total_price) : 0).toFixed(2);
     const formattedDate: string = this.currentDate.toLocaleDateString(undefined, options);
     let url_string = '?text=->%20%20%20%20%20%20%20%20*Invoice*%0D%0A' +
-      '%20%20*Token%20%20%20%20%20=%20%20%20%20%20' + this.random3DigitNumber + '*%0D%0A' +
+      '%20%20*Token%20%20%20%20%20=%20%20%20%20%20' + this.random3DigitNumber.toString() + '*%0D%0A' +
       '%20%20Date%20%20%20%20%20%20%20=%20%20%20%20%20' + formattedDate + '%0D%0A' +
-      '%20%20------------------------------------%0D%0A';
+      '%20%20----------------------------------%0D%0A';
     for (let i = 0; i < this.invoice_data.length; i++) {
-      let spaces = 30 - (this.invoice_data[i].product_name.length-1) * 2;
+      let spaces = 30 - (this.invoice_data[i].product_name.length - 1) * 2;
       url_string += '%20%20' + this.invoice_data[i].product_name;
       for (let j = 0; j < spaces; j++) url_string += '%20';
-      url_string += this.invoice_data[i].product_mrp + '%20%20%20%20' + this.invoice_data[i].product_price + '%0D%0A';
+      url_string += this.invoice_data[i].product_mrp.toString() + '%20%20%20%20' + this.invoice_data[i].product_price.toString() + '%0D%0A';
     }
-    url_string += '%20%20------------------------------------%0D%0A' +
-      '%20%20Total+Price%20%20%20%20%20=%20%20%20%20%20' + this.total_price + '%0D%0A' +
-      '%20%20Saved+Price%20%20%20%20%20=%20%20%20%20%20' + this.total_save_price + '%0D%0A';
+    url_string += '%20%20----------------------------------%0D%0A' +
+      '%20%20Total+Price%20%20%20%20%20=%20%20%20%20%20' + this.total_price.toString() + '%0D%0A' +
+      '%20%20Saved+Price%20%20%20%20%20=%20%20%20%20%20' + this.total_save_price.toString() + '%0D%0A';
     if (this.status_of_payment == 'Paid') {
       url_string += '%20%20Status%20%20%20%20%20=%20%20%20%20%20' + this.status_of_payment + '%0D%0A' +
-        '%20%20Paid+Amount_by+customer%20%20%20%20%20=%20%20%20%20%20' + this.paid_amount + '%0D%0A' +
+        '%20%20Customer+Paid%20%20%20%20%20=%20%20%20%20%20' + (+this.paid_amount).toString() + '%0D%0A' +
         '%20%20~Return~%20%20%20%20%20=%20%20%20%20%20' + return_price + '%0D%0A' +
         '%20%20Thank+you+for+Shopping+with+us%20%20%20%20%20%20%20%20%20%20';
     } else {
