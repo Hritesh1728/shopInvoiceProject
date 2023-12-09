@@ -10,7 +10,7 @@ change any of the source files.
 ## Hosting
 
 The Application is hosted on GitHub
-at [https://hritesh1728.github.io/shopInvoiceProject/](https://hritesh1728.github.io/shopInvoiceProject/)
+at [https://hritesh1728.github.io/shopInvoiceProject/main_page](https://hritesh1728.github.io/shopInvoiceProject/main_page)
 
 ## Tutorial
 
